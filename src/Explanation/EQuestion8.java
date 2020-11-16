@@ -5,13 +5,13 @@ import java.util.Map;
 
 public class EQuestion8 {
 	public static void main(String[] args) {
-	    Solution solution = new Solution();
-	    int result = solution.myAtoi(" -12num");
-	    System.out.println(result);
+		Solution8 solution8 = new Solution8();
+		int result = solution8.myAtoi(" -12num");
+		System.out.println(result);
 	}
 }
 
-class Solution {
+class Solution8 {
 	public int myAtoi(String str) {
 		Automaton automaton = new Automaton();
 		int length = str.length();

@@ -44,10 +44,15 @@
 
 public class Question8 {
 	public static void main(String[] args) {
-		System.out.println(myAtoi(""));
+		Solution8 solution8 = new Solution8();
+		int result = solution8.myAtoi("-91283472332");
+		System.out.println(result);
 	}
 
-	public static int myAtoi(String s) {
+}
+
+class Solution8 {
+	public int myAtoi(String s) {
 		int begin = 0;
 		int end;
 

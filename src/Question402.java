@@ -24,10 +24,15 @@
 
 public class Question402 {
 	public static void main(String[] args) {
-		System.out.println(removeKdigits2("5337", 2));
+		Solution402 solution402 = new Solution402();
+		String result = solution402.removeKdigits2("1432219", 3);
+		System.out.println(result);
 	}
 
-	public static String removeKdigits1(String num, int k) {
+}
+
+class Solution402 {
+	public String removeKdigits1(String num, int k) {
 		// 移除所有数字
 		if(num.length() == k) {
 			return "0";
@@ -66,7 +71,7 @@ public class Question402 {
 		return numBuffer.toString();
 	}
 
-	public static String removeKdigits2(String num, int k) {
+	public String removeKdigits2(String num, int k) {
 		// 移除所有数字
 		if(num.length() == k) {
 			return "0";
