@@ -16,7 +16,7 @@ import java.util.Arrays;
  * [[5,0], [7,0], [5,2], [6,1], [4,4], [7,1]]
  */
 
-public class Question406 {
+public class Question406_QueueReconstructionByHeight {
 	public static void main(String[] args) {
 		Solution406 solution406 = new Solution406();
 		int[][] people = new int[][]{{2, 4}, {3, 4}, {9, 0}, {0, 6}, {7, 1}, {6, 0}, {7, 3}, {2, 5}, {1, 1}, {8, 0}};

@@ -22,7 +22,7 @@
  * 解释: 从原数字移除所有的数字，剩余为空就是0。
  */
 
-public class Question402 {
+public class Question402_RemoveKDigits {
 	public static void main(String[] args) {
 		Solution402 solution402 = new Solution402();
 		String result = solution402.removeKdigits2("1432219", 3);

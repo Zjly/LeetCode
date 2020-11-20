@@ -13,7 +13,7 @@ import java.util.Arrays;
  * 尽量减少操作次数。
  */
 
-public class Question283 {
+public class Question283_MoveZeroes {
 	public static void main(String[] args) {
 		Solution283 solution283 = new Solution283();
 		int[] nums = {0, 1, 0};

@@ -1,4 +1,4 @@
-public class Question134 {
+public class Question134_GasStation {
 	public static void main(String[] args) {
 		Solution134 solution134 = new Solution134();
 		int[] gas = {1, 2, 3, 4, 5, 5, 70};

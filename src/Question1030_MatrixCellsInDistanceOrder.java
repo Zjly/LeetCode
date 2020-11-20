@@ -35,7 +35,7 @@ import java.util.LinkedList;
  * 0 <= c0 < C
  */
 
-public class Question1030 {
+public class Question1030_MatrixCellsInDistanceOrder {
 	public static void main(String[] args) {
 		Solution1030 solution1030 = new Solution1030();
 		int[][] result = solution1030.allCellsDistOrder(2, 3, 1, 2);

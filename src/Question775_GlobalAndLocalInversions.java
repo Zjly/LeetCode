@@ -19,7 +19,7 @@
  * 这个问题的时间限制已经减少了。
  */
 
-public class Question775 {
+public class Question775_GlobalAndLocalInversions {
 	public static void main(String[] args) {
 		Solution775 solution775 = new Solution775();
 		System.out.println(solution775.isIdealPermutation(new int[]{1, 0, 2}));

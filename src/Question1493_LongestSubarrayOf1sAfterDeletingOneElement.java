@@ -33,7 +33,7 @@
  * nums[i] 要么是 0 要么是 1 。
  */
 
-public class Question1493 {
+public class Question1493_LongestSubarrayOf1sAfterDeletingOneElement {
 	public static void main(String[] args) {
 		Solution1493 solution1493 = new Solution1493();
 		int[] nums = {0, 1, 0, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0};
