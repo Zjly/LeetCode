@@ -21,11 +21,11 @@ import static java.util.Arrays.asList;
 
 public class Question690_EmployeeImportance {
 	public static void main(String[] args) {
-		Employee employee1 = new Employee(1, 5, asList(2, 3));
-		Employee employee2 = new Employee(2, 3, Collections.emptyList());
-		Employee employee3 = new Employee(3, 3, Collections.emptyList());
+		Employee690 employee1 = new Employee690(1, 5, asList(2, 3));
+		Employee690 employee2 = new Employee690(2, 3, Collections.emptyList());
+		Employee690 employee3 = new Employee690(3, 3, Collections.emptyList());
 
-		List<Employee> employees = new ArrayList<>();
+		List<Employee690> employees = new ArrayList<>();
 		employees.add(employee1);
 		employees.add(employee2);
 		employees.add(employee3);
@@ -36,12 +36,12 @@ public class Question690_EmployeeImportance {
 }
 
 // Definition for Employee.
-class Employee {
+class Employee690 {
 	public int id;
 	public int importance;
 	public List<Integer> subordinates;
 
-	public Employee(int id, int importance, List<Integer> subordinates) {
+	public Employee690(int id, int importance, List<Integer> subordinates) {
 		this.id = id;
 		this.importance = importance;
 		this.subordinates = subordinates;
@@ -49,10 +49,10 @@ class Employee {
 }
 
 class Solution690 {
-	public int getImportance(List<Employee> employees, int id) {
+	public int getImportance(List<Employee690> employees, int id) {
 		// 建立哈希表
-		HashMap<Integer, Employee> hashMap = new HashMap<>();
-		for(Employee employee : employees) {
+		HashMap<Integer, Employee690> hashMap = new HashMap<>();
+		for(Employee690 employee : employees) {
 			hashMap.put(employee.id, employee);
 		}
 
@@ -61,7 +61,7 @@ class Solution690 {
 
 		// 创建队列
 		LinkedList<Integer> linkedList = new LinkedList<>();
-		Employee thisEmployees = hashMap.get(id);
+		Employee690 thisEmployees = hashMap.get(id);
 		linkedList.add(thisEmployees.id);
 
 		// 使用BFS进行逐层计算

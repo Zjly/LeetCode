@@ -23,25 +23,25 @@ public class Question147_InsertionSortList {
 		Solution147 solution147 = new Solution147();
 
 		int[] nums = new int[]{3, 2, 4};
-		ListNode head = new ListNode(nums[0]);
-		ListNode p = head;
+		ListNode147 head = new ListNode147(nums[0]);
+		ListNode147 p = head;
 		for(int i = 1; i < nums.length; i++) {
-			p.next = new ListNode(nums[i]);
+			p.next = new ListNode147(nums[i]);
 			p = p.next;
 		}
 
 		solution147.display(head);
 
-		ListNode result = solution147.insertionSortList(head);
+		ListNode147 result = solution147.insertionSortList(head);
 		solution147.display(result);
 	}
 }
 
-class ListNode {
+class ListNode147 {
 	int val;
-	ListNode next;
+	ListNode147 next;
 
-	ListNode(int x) {
+	ListNode147(int x) {
 		val = x;
 	}
 
@@ -52,15 +52,15 @@ class ListNode {
 }
 
 class Solution147 {
-	public ListNode insertionSortList(ListNode head) {
+	public ListNode147 insertionSortList(ListNode147 head) {
 		if(head == null) {
 		    return null;
 		}
 
-		ListNode index = head.next;
-		ListNode p;
-		ListNode pre;
-		ListNode q;
+		ListNode147 index = head.next;
+		ListNode147 p;
+		ListNode147 pre;
+		ListNode147 q;
 
 		while(index != null) {
 			p = head;
@@ -108,7 +108,7 @@ class Solution147 {
 		return head;
 	}
 
-	public void display(ListNode head) {
+	public void display(ListNode147 head) {
 		while(head != null) {
 			System.out.print(head.val + " ");
 			head = head.next;
