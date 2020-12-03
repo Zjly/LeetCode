@@ -1,6 +1,5 @@
 import java.util.Arrays;
 
-// TODO 暂未解决
 /**
  * 321. 拼接最大数
  * 给定长度分别为 m 和 n 的两个数组，其元素由 0-9 构成，表示两个自然数各位上的数字。现在从这两个数组中选出 k (k <= m + n) 个数字拼接成一个新的数，要求从同一个数组中取出的数字保持其在原数组中的相对顺序。
@@ -35,163 +34,96 @@ import java.util.Arrays;
 public class Question321_CreateMaximumNumber {
 	public static void main(String[] args) {
 		Solution321 solution321 = new Solution321();
-		int[] nums1 = new int[]{4, 1, 1, 4};
-		int[] nums2 = new int[]{4, 3, 1, 3};
+		int[] nums1 = new int[]{5, 6, 4};
+		int[] nums2 = new int[]{5, 4, 8, 3};
 
-		for(int i = 8; i <= 8; i++) {
-			int[] result = solution321.maxNumber(nums1, nums2, i);
-			System.out.println(Arrays.toString(result));
-		}
+		int[] result = solution321.maxNumber(nums1, nums2, 3);
+		System.out.println(Arrays.toString(result));
 	}
 }
 
 class Solution321 {
-	int[] result;
-	int index;
-	int[] indexArray;
-
 	public int[] maxNumber(int[] nums1, int[] nums2, int k) {
-		result = new int[k];
+		int m = nums1.length, n = nums2.length;
+		int[] maxSubsequence = new int[k];
 
-		// 两个数组的当前索引位置
-		indexArray = new int[]{0, 0};
+		// 寻找起点终点 start为从第一个数组中最少需要抽取几个字符 end为从第一个数组中最多需要抽取几个字符
+		int start = Math.max(0, k - n), end = Math.min(k, m);
 
-		// 逐个添加数字
-		for(index = 0; index < k; index++) {
-			int maxNumber = getMaxNumberAndLocation(nums1, nums2, k, indexArray, index);
-			if(index == k) {
-				break;
+		// 对其进行循环，寻找每一个搭配
+		for(int i = start; i <= end; i++) {
+			// 分别寻找两个数组中指定长度的最大字符串
+			int[] subsequence1 = maxSubsequence(nums1, i);
+			int[] subsequence2 = maxSubsequence(nums2, k - i);
+			int[] curMaxSubsequence = merge(subsequence1, subsequence2);
+			if(compare(curMaxSubsequence, 0, maxSubsequence, 0) > 0) {
+				System.arraycopy(curMaxSubsequence, 0, maxSubsequence, 0, k);
 			}
-			if(maxNumber == -1) {
-				break;
-			}
-			result[index] = maxNumber;
 		}
-
-		return result;
+		return maxSubsequence;
 	}
 
-	public int getMaxNumberAndLocation(int[] nums1, int[] nums2, int k, int[] indexArray, int index) {
-		// 剩余待添加数字数量
-		int totalRemain = k - index - 1;
-
-		// 两个数组在当前索引下所剩余的数字个数
-		int remain1 = nums1.length - indexArray[0];
-		int remain2 = nums2.length - indexArray[1];
-
-		// 最大值以及位置
-		int maxNum = -1;
-		int maxLocation = -1;
-		int maxIndex = -1;
-		boolean isEqual = false;
-		int[] indexArray1 = indexArray.clone();
-		int[] indexArray2 = indexArray.clone();
-		boolean isFirst = true;
-
-		// 在数组1内寻找
-		for(int j = indexArray[0]; j < nums1.length; j++) {
-			int currentNum = nums1[j];
-			int currentRemain = nums1.length - j - 1 + remain2;
-
-			// 接下来的数字剩余不足以满足总剩余，即后方的数字都无法满足要求
-			if(currentRemain < totalRemain) {
-				break;
+	public int[] maxSubsequence(int[] nums, int k) {
+		int length = nums.length;
+		int[] stack = new int[k];
+		// 最左侧为栈底，使用栈底到栈顶单调递减的单调栈
+		int top = -1;
+		// 剩余的数的个数，即最多能移出栈的元素的个数
+		int remain = length - k;
+		for(int num : nums) {
+			// 不符合单调栈，则对顺序不对的元素出栈
+			while(top >= 0 && stack[top] < num && remain > 0) {
+				top--;
+				remain--;
 			}
-
-			// 找到更大值
-			if(currentNum > maxNum) {
-				maxNum = currentNum;
-				maxLocation = 0;
-				maxIndex = j;
+			// 元素入栈
+			if(top < k - 1) {
+				stack[++top] = num;
+			} else {
+				remain--;
 			}
 		}
-
-		// 在数组2内寻找
-		for(int j = indexArray[1]; j < nums2.length; j++) {
-			int currentNum = nums2[j];
-			int currentRemain = nums2.length - j - 1 + remain1;
-			if(currentRemain < totalRemain) {
-				break;
-			}
-
-			if(currentNum > maxNum) {
-				maxNum = currentNum;
-				maxLocation = 1;
-				maxIndex = j;
-				isEqual = false;
-			} else if(currentNum == maxNum && isFirst && maxLocation == 0) {
-				isFirst = false;
-				indexArray1[0] = maxIndex + 1;
-				indexArray2[1] = j + 1;
-
-				isEqual = true;
-			}
-		}
-
-		if(isEqual) {
-			result[index] = maxNum;
-			boolean isOver = equalTreatment(nums1, nums2, k, indexArray1, indexArray2, index);
-			if(isOver) {
-				return -1;
-			}
-
-			if(this.index == k) {
-				return result[this.index - 1];
-			}
-			return result[this.index];
-		}
-
-		// 更改当前索引位置
-		if(maxLocation == 0) {
-			indexArray[0] = maxIndex + 1;
-		} else if(maxLocation == 1) {
-			indexArray[1] = maxIndex + 1;
-		}
-
-		return maxNum;
+		return stack;
 	}
 
-	public boolean equalTreatment(int[] nums1, int[] nums2, int k, int[] indexArray1, int[] indexArray2, int index) {
-		int[] result1 = result.clone();
-		int[] result2 = result.clone();
+	public int[] merge(int[] subsequence1, int[] subsequence2) {
+		int x = subsequence1.length, y = subsequence2.length;
+		if(x == 0) {
+			return subsequence2;
+		}
+		if(y == 0) {
+			return subsequence1;
+		}
+		int mergeLength = x + y;
+		int[] merged = new int[mergeLength];
+		int index1 = 0, index2 = 0;
 
-		for(int i = index + 1; i < k; i++) {
-			if(Arrays.equals(indexArray1, indexArray2)) {
-				result = result1;
-				indexArray = indexArray1;
-				this.index = i - 1;
-				return false;
+		// 进行合并
+		for(int i = 0; i < mergeLength; i++) {
+			// 1较大
+			if(compare(subsequence1, index1, subsequence2, index2) > 0) {
+				merged[i] = subsequence1[index1++];
 			}
-
-			int num1 = getMaxNumberAndLocation(nums1, nums2, k, indexArray1, i);
-			if(this.index > i) {
-				return false;
-			}
-			int num2 = getMaxNumberAndLocation(nums1, nums2, k, indexArray2, i);
-			if(this.index > i) {
-				return false;
-			}
-
-			result1[i] = num1;
-			result2[i] = num2;
-
-			if(num1 > num2) {
-				result = result1;
-				indexArray = indexArray1;
-				this.index = i;
-				return false;
-			}
-			if(num1 < num2) {
-				result = result2;
-				indexArray = indexArray2;
-				this.index = i;
-				return false;
+			// 2较大
+			else {
+				merged[i] = subsequence2[index2++];
 			}
 		}
+		return merged;
+	}
 
-		result = result1;
-		indexArray = indexArray1;
-		this.index = k;
-		return true;
+	public int compare(int[] subsequence1, int index1, int[] subsequence2, int index2) {
+		int x = subsequence1.length, y = subsequence2.length;
+		while(index1 < x && index2 < y) {
+			int difference = subsequence1[index1] - subsequence2[index2];
+			// 两者不同
+			if(difference != 0) {
+				return difference;
+			}
+			// 相同则继续比较
+			index1++;
+			index2++;
+		}
+		return (x - index1) - (y - index2);
 	}
 }
