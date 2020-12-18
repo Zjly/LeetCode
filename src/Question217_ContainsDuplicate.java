@@ -25,7 +25,7 @@ public class Question217_ContainsDuplicate {
 	}
 }
 
-class Solution {
+class Solution217 {
 	public boolean containsDuplicate(int[] nums) {
 		HashMap<Integer, Boolean> hashMap = new HashMap<>();
 
