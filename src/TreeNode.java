@@ -12,3 +12,10 @@ public class TreeNode {
 		return String.valueOf(val);
 	}
 }
+
+class TreeNodeTool {
+	public static TreeNode createTree() {
+		return null;
+
+	}
+}
