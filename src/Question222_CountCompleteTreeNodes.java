@@ -19,7 +19,7 @@
 public class Question222_CountCompleteTreeNodes {
 	public static void main(String[] args) {
 		Tool222 tool222 = new Tool222();
-		TreeNode222 root;
+		TreeNode root;
 		Solution222 solution222 = new Solution222();
 
 		for(int i = 1; i < 128; i++) {
@@ -35,31 +35,17 @@ public class Question222_CountCompleteTreeNodes {
 	}
 }
 
-class TreeNode222 {
-	int val;
-	TreeNode222 left;
-	TreeNode222 right;
-
-	TreeNode222(int x) {
-		val = x;
-	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(val);
-	}
-}
 
 class Tool222 {
 	int current = 1;
 	int count;
 
-	public TreeNode222 createTree(int count) {
+	public TreeNode createTree(int count) {
 		if(count <= 0) {
 			return null;
 		}
 
-		TreeNode222 root = new TreeNode222(1);
+		TreeNode root = new TreeNode(1);
 		this.count = count;
 
 		while(this.count != current) {
@@ -71,21 +57,21 @@ class Tool222 {
 		return root;
 	}
 
-	public void createNode(TreeNode222 treeNode222) {
-		if(treeNode222 != null) {
-			createNode(treeNode222.left);
-			createNode(treeNode222.right);
+	public void createNode(TreeNode TreeNode) {
+		if(TreeNode != null) {
+			createNode(TreeNode.left);
+			createNode(TreeNode.right);
 
-			if(treeNode222.left == null) {
+			if(TreeNode.left == null) {
 				if(current != count) {
 					current++;
-					treeNode222.left = new TreeNode222(current);
+					TreeNode.left = new TreeNode(current);
 				}
 			}
-			if(treeNode222.right == null) {
+			if(TreeNode.right == null) {
 				if(current != count) {
 					current++;
-					treeNode222.right = new TreeNode222(current);
+					TreeNode.right = new TreeNode(current);
 				}
 			}
 		}
@@ -93,7 +79,7 @@ class Tool222 {
 }
 
 class Solution222 {
-	public int countNodes(TreeNode222 root) {
+	public int countNodes(TreeNode root) {
 		if(root == null) {
 			return 0;
 		}
@@ -102,7 +88,7 @@ class Solution222 {
 
 		// 求出该树的深度
 		int depth = 0;
-		TreeNode222 current = root;
+		TreeNode current = root;
 		while(current.left != null) {
 			current = current.left;
 			depth++;
@@ -111,7 +97,7 @@ class Solution222 {
 		count += Math.pow(2, depth);
 
 		// 查找基准
-		TreeNode222 base = root;
+		TreeNode base = root;
 		int baseDepth = 0;
 
 		// 未查找完成

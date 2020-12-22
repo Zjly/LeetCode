@@ -23,44 +23,30 @@ public class Question147_InsertionSortList {
 		Solution147 solution147 = new Solution147();
 
 		int[] nums = new int[]{3, 2, 4};
-		ListNode147 head = new ListNode147(nums[0]);
-		ListNode147 p = head;
+		ListNode head = new ListNode(nums[0]);
+		ListNode p = head;
 		for(int i = 1; i < nums.length; i++) {
-			p.next = new ListNode147(nums[i]);
+			p.next = new ListNode(nums[i]);
 			p = p.next;
 		}
 
 		solution147.display(head);
 
-		ListNode147 result = solution147.insertionSortList(head);
+		ListNode result = solution147.insertionSortList(head);
 		solution147.display(result);
 	}
 }
 
-class ListNode147 {
-	int val;
-	ListNode147 next;
-
-	ListNode147(int x) {
-		val = x;
-	}
-
-	@Override
-	public String toString() {
-		return String.valueOf(val);
-	}
-}
-
 class Solution147 {
-	public ListNode147 insertionSortList(ListNode147 head) {
+	public ListNode insertionSortList(ListNode head) {
 		if(head == null) {
-		    return null;
+			return null;
 		}
 
-		ListNode147 index = head.next;
-		ListNode147 p;
-		ListNode147 pre;
-		ListNode147 q;
+		ListNode index = head.next;
+		ListNode p;
+		ListNode pre;
+		ListNode q;
 
 		while(index != null) {
 			p = head;
@@ -78,9 +64,9 @@ class Solution147 {
 
 			// pre为最后一个数
 			if(p == null) {
-			    pre.next = q;
-			    q.next = null;
-			    continue;
+				pre.next = q;
+				q.next = null;
+				continue;
 			}
 
 			// 避免循环相指
@@ -108,7 +94,7 @@ class Solution147 {
 		return head;
 	}
 
-	public void display(ListNode147 head) {
+	public void display(ListNode head) {
 		while(head != null) {
 			System.out.print(head.val + " ");
 			head = head.next;
