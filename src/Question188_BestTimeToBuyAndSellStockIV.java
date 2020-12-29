@@ -25,7 +25,10 @@
 
 public class Question188_BestTimeToBuyAndSellStockIV {
 	public static void main(String[] args) {
-
+		Solution188 solution188 = new Solution188();
+		int k = 2;
+		int[] prices = new int[]{3, 2, 6, 5, 0, 3};
+		System.out.println(solution188.maxProfit(k, prices));
 	}
 }
 
@@ -41,7 +44,7 @@ class Solution188 {
 
 		dp[0][0][0] = 0;
 		dp[0][0][1] = -prices[0];
-		
+
 		for(int j = 1; j < k + 1; j++) {
 			dp[0][j][0] = Integer.MIN_VALUE / 2;
 			dp[0][j][1] = Integer.MIN_VALUE / 2;
@@ -58,7 +61,7 @@ class Solution188 {
 		int result = 0;
 		for(int j = 0; j < k + 1; j++) {
 			if(dp[prices.length - 1][j][0] > result) {
-			    result = dp[prices.length - 1][j][0];
+				result = dp[prices.length - 1][j][0];
 			}
 		}
 
