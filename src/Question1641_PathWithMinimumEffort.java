@@ -39,7 +39,7 @@ public class Question1641_PathWithMinimumEffort {
 }
 
 class Solution1641 {
-	class Point {
+	private static class Point {
 		int row;
 		int column;
 		int value;
