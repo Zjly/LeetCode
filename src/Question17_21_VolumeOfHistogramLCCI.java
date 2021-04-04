@@ -1,5 +1,3 @@
-import java.util.Stack;
-
 /**
  * 面试题 17.21. 直方图的水量
  * 给定一个直方图(也称柱状图)，假设有人从上面源源不断地倒水，最后直方图能存多少水量?直方图的宽度为 1。
@@ -10,7 +8,7 @@ import java.util.Stack;
  * 输出: 6
  */
 
-public class InterviewQuestion17_21_VolumeOfHistogramLCCI {
+public class Question17_21_VolumeOfHistogramLCCI {
 	public static void main(String[] args) {
 		int[] height = new int[]{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1};
 		Solution17_21 solution17_21 = new Solution17_21();
