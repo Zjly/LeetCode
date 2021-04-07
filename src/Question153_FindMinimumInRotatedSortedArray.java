@@ -35,7 +35,7 @@ class Solution153 {
 		}
 
 		int left = 0;
-		int right = nums.length;
+		int right = nums.length - 1;
 		int mid = (left + right) / 2;
 		int numF = nums[0];
 
