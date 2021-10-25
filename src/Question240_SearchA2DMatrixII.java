@@ -24,13 +24,16 @@
 
 public class Question240_SearchA2DMatrixII {
 	public static void main(String[] args) {
-
+		Solution240 solution240 = new Solution240();
+		int[][] matrix = {{1,4,7,11,15},{2,5,8,12,19},{3,6,9,16,22},{10,13,14,17,24},{18,21,23,26,30}};
+		int target = 5;
+		System.out.println(solution240.searchMatrix(matrix, target));
 	}
 }
 
 class Solution240 {
 	public boolean searchMatrix(int[][] matrix, int target) {
-		return search(matrix, target, 0, 0, matrix.length, matrix[0].length);
+		return search(matrix, target, 0, 0, matrix.length - 1, matrix[0].length - 1);
 	}
 
 	public boolean search(int[][] matrix, int target, int x1, int y1, int x2, int y2) {
