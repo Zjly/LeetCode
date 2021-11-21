@@ -55,7 +55,7 @@ class Node {
 };
 */
 
-class Solution {
+class Solution559 {
 	int maxDepth = 0;
 
 	public int maxDepth(Node root) {
