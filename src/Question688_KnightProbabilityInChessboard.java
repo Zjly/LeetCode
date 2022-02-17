@@ -43,24 +43,29 @@ public class Question688_KnightProbabilityInChessboard {
 
 class Solution688 {
 	public double knightProbability(int n, int k, int row, int column) {
-		return knightGo(n, k, row, column) / Math.pow(8, k);
-	}
-
-	public int knightGo(int n, int k, int row, int column) {
-		if(row < 0 || column < 0 || row >= n || column >= n) {
-			return 0;
-		}
-
-		if(k == 0) {
-			return 1;
-		}
-
-		int count = 0;
+		double[][][] dp = new double[k + 1][n][n];
 		int[][] steps = {{1, 2}, {2, 1}, {-1, 2}, {-2, 1}, {-1, -2}, {-2, -1}, {1, -2}, {2, -1}};
-		for(int[] step : steps) {
-			count += knightGo(n, k - 1, row + step[0], column + step[1]);
+
+		// 步数
+		for(int i = 0; i <= k; i++) {
+			for(int r = 0; r < n; r++) {
+				for(int c = 0; c < n; c++) {
+					if(i == 0) {
+					    dp[i][r][c] = 1;
+					} else {
+					    for(int[] step : steps) {
+					    	int rp = r + step[0];
+							int cp = c + step[1];
+
+							if(rp >= 0 && rp < n && cp >= 0 && cp < n) {
+							    dp[i][r][c] += dp[i - 1][rp][cp] / 8;
+							}
+					    }
+					}
+				}
+			}
 		}
 
-		return count;
+		return dp[k][row][column];
 	}
 }
