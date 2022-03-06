@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * 2104. 子数组范围和
  * 给你一个整数数组 nums 。nums 中，子数组的 范围 是子数组中最大元素和最小元素的差值。
@@ -56,6 +58,24 @@ public class Question2104_SumOfSubarrayRanges {
 
 class Solution2104 {
 	public long subArrayRanges(int[] nums) {
+		long sum = 0;
 
+		int[][] dpMax = new int[nums.length][nums.length];
+		int[][] dpMin = new int[nums.length][nums.length];
+
+		for(int i = 0; i < nums.length; i++) {
+			dpMax[i][i] = nums[i];
+			dpMin[i][i] = nums[i];
+		}
+
+		for(int i = 0; i < nums.length; i++) {
+			for(int j = i + 1; j < nums.length; j++) {
+				dpMax[i][j] = Math.max(dpMax[i][j - 1], nums[j]);
+				dpMin[i][j] = Math.min(dpMin[i][j - 1], nums[j]);
+				sum += dpMax[i][j] - dpMin[i][j];
+			}
+		}
+
+		return sum;
 	}
 }
