@@ -36,8 +36,8 @@
 public class Question799_ChampagneTower {
 	public static void main(String[] args) {
 		Solution799 solution799 = new Solution799();
-		int poured = 25;
-		int query_row = 6;
+		int poured = 2;
+		int query_row = 1;
 		int query_glass = 1;
 		System.out.println(solution799.champagneTower(poured, query_row, query_glass));
 	}
@@ -45,38 +45,25 @@ public class Question799_ChampagneTower {
 
 class Solution799 {
 	public double champagneTower(int poured, int query_row, int query_glass) {
-		int sum = (1 + query_row) * query_row / 2;
-		int currentSum = sum + query_row + 1;
+		double[] lastGlass = new double[1];
+		lastGlass[0] = poured;
 
-		if(poured <= sum) {
-			return 0;
-		}
+		for(int i = 0; i < query_row; i++) {
+			double[] currentGlass = new double[lastGlass.length + 1];
+			
+			for(int j = 0; j < currentGlass.length; j++) {
+				if(j - 1 >= 0 && lastGlass[j - 1] > 1) {
+				    currentGlass[j] += (lastGlass[j - 1] - 1) / 2;
+				}
 
-		if(poured >= currentSum) {
-		    return 1;
-		}
-
-		int[] lastGlass = new int[1];
-		lastGlass[0] = 1;
-
-		int s = 0;
-
-		for(int i = 1; i <= query_row; i++) {
-			s = 0;
-			int[] currentGlass = new int[lastGlass.length + 1];
-			currentGlass[0] = 1;
-			currentGlass[currentGlass.length - 1] = 1;
-
-			for(int j = 1; j <= currentGlass.length - 2; j++) {
-				currentGlass[j] = lastGlass[j - 1] + lastGlass[j];
-				s += currentGlass[j];
+				if(j < lastGlass.length && lastGlass[j] > 1) {
+				    currentGlass[j] += (lastGlass[j] - 1) / 2;
+				}
 			}
 
 			lastGlass = currentGlass;
 		}
 
-		poured -= sum;
-		double result = 1.0 * poured * lastGlass[query_glass] / s;
-		return result >= 1 ? 1 : result;
+		return Math.min(lastGlass[query_glass], 1);
 	}
 }
