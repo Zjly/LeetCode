@@ -25,7 +25,7 @@ public class Question16_11_DivingBoardLCCI {
 	}
 }
 
-class Solution {
+class Solution16_11 {
 	public int[] divingBoard(int shorter, int longer, int k) {
 		if(k == 0) {
 		    return new int[]{};
