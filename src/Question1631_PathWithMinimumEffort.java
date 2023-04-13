@@ -30,15 +30,15 @@ import java.util.PriorityQueue;
  * 1 <= heights[i][j] <= 106
  */
 
-public class Question1641_PathWithMinimumEffort {
+public class Question1631_PathWithMinimumEffort {
 	public static void main(String[] args) {
-		Solution1641 solution1641 = new Solution1641();
+		Solution1631 solution1631 = new Solution1631();
 		int[][] heights = new int[][]{{1, 2, 2}, {3, 8, 2}, {5, 3, 5}};
-		System.out.println(solution1641.minimumEffortPath(heights));
+		System.out.println(solution1631.minimumEffortPath(heights));
 	}
 }
 
-class Solution1641 {
+class Solution1631 {
 	private static class Point {
 		int row;
 		int column;
