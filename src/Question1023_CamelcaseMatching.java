@@ -88,3 +88,35 @@ class Solution1023 {
 		return true;
 	}
 }
+
+class Solution1023_2 {
+	public List<Boolean> camelMatch(String[] queries, String pattern) {
+		List<Boolean> result = new ArrayList<>();
+		for(String query : queries) {
+			result.add(match(query, pattern));
+		}
+		return result;
+	}
+
+	public boolean match(String query, String pattern) {
+		int index = 0;
+		for(int i = 0; i < query.length(); i++) {
+			char c = query.charAt(i);
+			if(pattern.length() == index) {
+				if(c >= 'A' && c <= 'Z') {
+					return false;
+				} else {
+				    continue;
+				}
+			}
+
+			if(c == pattern.charAt(index)) {
+				index++;
+			} else if(c >= 'A' && c <= 'Z') {
+				return false;
+			}
+		}
+
+		return index == pattern.length();
+	}
+}
