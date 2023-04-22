@@ -59,4 +59,20 @@ class Solution1027 {
 
 		return max;
 	}
+
+	public int longestArithSeqLength2(int[] nums) {
+		int max = 0;
+		int[][] dp = new int[nums.length][1001];
+		for(int i = 0; i < nums.length; i++) {
+			int numI = nums[i];
+			for(int j = 0; j < i; j++) {
+				int numJ = nums[j];
+				int diff = numI - numJ;
+				dp[i][diff + 500] = Math.max(dp[i][diff + 500], dp[j][diff + 500] + 1);
+				max = Math.max(max, dp[i][diff + 500]);
+			}
+		}
+
+		return max + 1;
+	}
 }
