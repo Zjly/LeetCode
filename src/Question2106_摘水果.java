@@ -1,7 +1,8 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 import java.util.TreeMap;
 
-import org.junit.Assert;
-import org.junit.Test;
 
 /**
  * 2106. 摘水果
@@ -64,7 +65,7 @@ public class Question2106_摘水果 {
 		int startPos = 5;
 		int k = 4;
 
-		Assert.assertEquals(14, solution2106.maxTotalFruits(fruits, startPos, k));
+		Assertions.assertEquals(14, solution2106.maxTotalFruits(fruits, startPos, k));
 	}
 
 	@Test
@@ -73,7 +74,7 @@ public class Question2106_摘水果 {
 		int startPos = 5;
 		int k = 4;
 
-		Assert.assertEquals(9, solution2106.maxTotalFruits(fruits, startPos, k));
+		Assertions.assertEquals(9, solution2106.maxTotalFruits(fruits, startPos, k));
 	}
 }
 
