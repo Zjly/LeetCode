@@ -42,7 +42,7 @@ public class Question1053_交换一次的先前排列 {
 
 class Solution1053 {
 	public int[] prevPermOpt1(int[] arr) {
-		Stack<Integer> stack = new Stack();
+		Stack<Integer> stack = new Stack<>();
 		for(int i = arr.length - 1; i >= 0; i--) {
 			int index = -1;
 			while(!stack.isEmpty() && arr[stack.peek()] < arr[i]) {

@@ -52,7 +52,7 @@ public class Question804_UniqueMorseCodeWords {
 class Solution804 {
 	public int uniqueMorseRepresentations(String[] words) {
 		Set<String> set = new HashSet<>();
-		String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..",
+		String[] morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "src/main", ".---", "-.-", ".-..",
 				"--", "-.", "---"
 				, ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
 		for(String word : words) {

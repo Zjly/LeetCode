@@ -1,5 +1,3 @@
-import javafx.application.Platform;
-
 /**
  * 481. 神奇字符串
  * 神奇字符串 s 仅由 '1' 和 '2' 组成，并需要遵守下面的规则：
