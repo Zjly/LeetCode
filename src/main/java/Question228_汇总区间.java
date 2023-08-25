@@ -50,7 +50,7 @@ public class Question228_汇总区间 {
  * @author Zhang Lei
  * @date 2023/8/26 0:36
  */
-class Solution228 {
+class Solution228_2 {
     public List<String> summaryRanges(int[] nums) {
         List<String> result = new ArrayList<>();
 
