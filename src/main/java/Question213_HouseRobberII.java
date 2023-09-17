@@ -29,7 +29,7 @@ public class Question213_HouseRobberII {
 	}
 }
 
-class Solution213 {
+class Solution213_1 {
 	public int rob(int[] nums) {
 		if(nums.length == 1) {
 		    return nums[0];
@@ -56,5 +56,32 @@ class Solution213 {
 		maxMoney1[nums.length - 1] = Math.max(maxMoney1[nums.length - 3] + nums[nums.length - 1], maxMoney1[nums.length - 2]);
 		maxMoney2[nums.length - 1] = maxMoney2[nums.length - 2];
 		return Math.max(maxMoney1[nums.length - 1], maxMoney2[nums.length - 1]);
+	}
+}
+
+/**
+ * @author Zhang Lei
+ * @date 2023/9/17 13:23
+ */
+class Solution213_2 {
+	public int rob(int[] nums) {
+		int length = nums.length;
+		if (length == 1) {
+			return nums[0];
+		}
+
+		int[] dp1 = new int[length];
+		int[] dp2 = new int[length];
+		dp1[0] = 0;
+		dp1[1] = nums[1];
+		dp2[0] = nums[0];
+		dp2[1] = Math.max(nums[0], nums[1]);
+
+		for(int i = 2; i < length; i++) {
+			dp1[i] = Math.max(dp1[i - 1] ,dp1[i - 2] + nums[i]);
+			dp2[i] = Math.max(dp2[i - 1] ,dp2[i - 2] + nums[i]);
+		}
+
+		return Math.max(dp1[length - 1], dp2[length - 2]);
 	}
 }
