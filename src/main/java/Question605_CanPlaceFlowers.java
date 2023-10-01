@@ -67,3 +67,29 @@ class Solution605 {
 		return false;
 	}
 }
+
+class Solution605_2 {
+	public boolean canPlaceFlowers(int[] flowerbed, int n) {
+		int count = 0;
+		int length = flowerbed.length;
+
+		for (int i = 0; i < length; i++) {
+			if (flowerbed[i] == 1) {
+				continue;
+			}
+
+			if (i > 0 && flowerbed[i - 1] == 1) {
+				continue;
+			}
+
+			if (i < length - 1 && flowerbed[i + 1] == 1) {
+				continue;
+			}
+
+			flowerbed[i] = 1;
+			count++;
+		}
+
+		return count >= n;
+	}
+}
