@@ -1,3 +1,6 @@
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
 /**
  * 188. 买卖股票的最佳时机 IV
  * 给定一个整数数组 prices ，它的第 i 个元素 prices[i] 是一支给定的股票在第 i 天的价格。
@@ -24,47 +27,83 @@
  */
 
 public class Question188_BestTimeToBuyAndSellStockIV {
-	public static void main(String[] args) {
-		Solution188 solution188 = new Solution188();
-		int k = 2;
-		int[] prices = new int[]{3, 2, 6, 5, 0, 3};
-		System.out.println(solution188.maxProfit(k, prices));
-	}
+    Solution188_2 solution188_2 = new Solution188_2();
+
+    @Test
+    public void test() {
+        int[] prices = {3, 3, 5, 0, 0, 3, 1, 4};
+        int k = 2;
+        Assertions.assertEquals(6, solution188_2.maxProfit(k, prices));
+    }
+
+    @Test
+    public void test2() {
+        int[] prices = {1};
+        int k = 2;
+        Assertions.assertEquals(0, solution188_2.maxProfit(k, prices));
+    }
 }
 
 class Solution188 {
-	public int maxProfit(int k, int[] prices) {
-		if(k == 0 || prices.length == 0) {
-			return 0;
-		}
+    public int maxProfit(int k, int[] prices) {
+        if (k == 0 || prices.length == 0) {
+            return 0;
+        }
 
-		k = Math.min(k, prices.length / 2);
+        k = Math.min(k, prices.length / 2);
 
-		int[][][] dp = new int[prices.length][k + 1][2];
+        int[][][] dp = new int[prices.length][k + 1][2];
 
-		dp[0][0][0] = 0;
-		dp[0][0][1] = -prices[0];
+        dp[0][0][0] = 0;
+        dp[0][0][1] = -prices[0];
 
-		for(int j = 1; j < k + 1; j++) {
-			dp[0][j][0] = Integer.MIN_VALUE / 2;
-			dp[0][j][1] = Integer.MIN_VALUE / 2;
-		}
+        for (int j = 1; j < k + 1; j++) {
+            dp[0][j][0] = Integer.MIN_VALUE / 2;
+            dp[0][j][1] = Integer.MIN_VALUE / 2;
+        }
 
-		for(int i = 1; i < prices.length; i++) {
-			dp[i][0][1] = Math.max(dp[i - 1][0][1], dp[i - 1][0][0] - prices[i]);
-			for(int j = 1; j < k + 1; j++) {
-				dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j - 1][1] + prices[i]);
-				dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j][0] - prices[i]);
-			}
-		}
+        for (int i = 1; i < prices.length; i++) {
+            dp[i][0][1] = Math.max(dp[i - 1][0][1], dp[i - 1][0][0] - prices[i]);
+            for (int j = 1; j < k + 1; j++) {
+                dp[i][j][0] = Math.max(dp[i - 1][j][0], dp[i - 1][j - 1][1] + prices[i]);
+                dp[i][j][1] = Math.max(dp[i - 1][j][1], dp[i - 1][j][0] - prices[i]);
+            }
+        }
 
-		int result = 0;
-		for(int j = 0; j < k + 1; j++) {
-			if(dp[prices.length - 1][j][0] > result) {
-				result = dp[prices.length - 1][j][0];
-			}
-		}
+        int result = 0;
+        for (int j = 0; j < k + 1; j++) {
+            if (dp[prices.length - 1][j][0] > result) {
+                result = dp[prices.length - 1][j][0];
+            }
+        }
 
-		return result;
-	}
+        return result;
+    }
+}
+
+class Solution188_2 {
+    public int maxProfit(int k, int[] prices) {
+        if (k == 0 || prices.length == 0) {
+            return 0;
+        }
+
+        int[][][] dp = new int[prices.length][2][k];
+
+        for (int i = 0; i < k; i++) {
+            dp[0][0][i] = -prices[0];
+            dp[0][1][i] = 0;
+        }
+
+        for (int i = 1; i < prices.length; i++) {
+            dp[i][0][0] = Math.max(dp[i - 1][0][0], -prices[i]);
+            dp[i][1][0] = Math.max(dp[i - 1][1][0], dp[i - 1][0][0] + prices[i]);
+
+            for (int j = 1; j < k; j++) {
+                dp[i][0][j] = Math.max(dp[i - 1][0][j], dp[i - 1][1][j - 1] - prices[i]);
+                dp[i][1][j] = Math.max(dp[i - 1][1][j], dp[i - 1][0][j] + prices[i]);
+            }
+        }
+
+        return dp[prices.length - 1][1][k - 1];
+    }
 }
