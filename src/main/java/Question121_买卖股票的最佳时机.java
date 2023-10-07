@@ -37,7 +37,7 @@ public class Question121_买卖股票的最佳时机 {
  * @author Zhang Lei
  * @date 2023/10/1 12:44
  */
-class Solution {
+class Solution121 {
     public int maxProfit(int[] prices) {
         int min = prices[0];
         int maxPro = 0;
