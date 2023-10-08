@@ -1,5 +1,7 @@
 import java.util.HashMap;
+import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 /**
  * 2034. 股票价格波动
@@ -54,60 +56,102 @@ public class Question2034_StockPriceFluctuation {
 	public static void main(String[] args) {
 
 	}
+}
 
-	class StockPrice {
-		int current;
-		HashMap<Integer, Integer> timePriceMap;
-		PriorityQueue<int[]> maxPriorityQueue;
-		PriorityQueue<int[]> minPriorityQueue;
+class StockPrice {
+	int current;
+	HashMap<Integer, Integer> timePriceMap;
+	PriorityQueue<int[]> maxPriorityQueue;
+	PriorityQueue<int[]> minPriorityQueue;
 
-		public StockPrice() {
-			current = 0;
-			timePriceMap = new HashMap<>();
-			maxPriorityQueue = new PriorityQueue<>((a, b) -> b[0] - a[0]);
-			minPriorityQueue = new PriorityQueue<>((a, b) -> a[0] - b[0]);
-		}
+	public StockPrice() {
+		current = 0;
+		timePriceMap = new HashMap<>();
+		maxPriorityQueue = new PriorityQueue<>((a, b) -> b[0] - a[0]);
+		minPriorityQueue = new PriorityQueue<>((a, b) -> a[0] - b[0]);
+	}
 
-		public void update(int timestamp, int price) {
-			current = Math.max(current, timestamp);
-			timePriceMap.put(timestamp, price);
-			maxPriorityQueue.offer(new int[]{price, timestamp});
-			minPriorityQueue.offer(new int[]{price, timestamp});
-		}
+	public void update(int timestamp, int price) {
+		current = Math.max(current, timestamp);
+		timePriceMap.put(timestamp, price);
+		maxPriorityQueue.offer(new int[]{price, timestamp});
+		minPriorityQueue.offer(new int[]{price, timestamp});
+	}
 
-		public int current() {
-			return timePriceMap.get(current);
-		}
+	public int current() {
+		return timePriceMap.get(current);
+	}
 
-		public int maximum() {
-			while (true) {
-				int[] priceTime = maxPriorityQueue.peek();
-				int price = priceTime[0], timestamp = priceTime[1];
-				if (timePriceMap.get(timestamp) == price) {
-					return price;
-				}
-				maxPriorityQueue.poll();
+	public int maximum() {
+		while (true) {
+			int[] priceTime = maxPriorityQueue.peek();
+			int price = priceTime[0], timestamp = priceTime[1];
+			if (timePriceMap.get(timestamp) == price) {
+				return price;
 			}
-		}
-
-		public int minimum() {
-			while (true) {
-				int[] priceTime = minPriorityQueue.peek();
-				int price = priceTime[0], timestamp = priceTime[1];
-				if (timePriceMap.get(timestamp) == price) {
-					return price;
-				}
-				minPriorityQueue.poll();
-			}
+			maxPriorityQueue.poll();
 		}
 	}
 
-	/*
-	 * Your StockPrice object will be instantiated and called as such:
-	 * StockPrice obj = new StockPrice();
-	 * obj.update(timestamp,price);
-	 * int param_2 = obj.current();
-	 * int param_3 = obj.maximum();
-	 * int param_4 = obj.minimum();
-	 */
+	public int minimum() {
+		while (true) {
+			int[] priceTime = minPriorityQueue.peek();
+			int price = priceTime[0], timestamp = priceTime[1];
+			if (timePriceMap.get(timestamp) == price) {
+				return price;
+			}
+			minPriorityQueue.poll();
+		}
+	}
+}
+
+class StockPrice_2 {
+	int maxTimestamp;
+	TreeSet<int[]> treeSet;
+	Map<Integer, Integer> map;
+
+	public StockPrice_2() {
+		maxTimestamp = 0;
+		/* 代码中使用了 TreeSet<int[]> 这个数据结构，它是一个有序集合，可以按照自定义的比较器来排序元素。你的比较器是 (a, b) -> a[1] -
+		b[1]，也就是说，你只根据数组的第二个元素（也就是价格）来比较两个数组。这样做有一个问题，就是如果两个数组的第二个元素相同，
+		那么它们会被认为是相等的，而 TreeSet 不允许有重复的元素。所以，如果你有两个不同的时间戳，但是价格相同，那么 TreeSet 只会保留一个，
+		而丢弃另一个。这可能导致你在查询最大或最小价格时候得到错误的结果。
+		 */
+		treeSet = new TreeSet<>((a, b) -> {
+			if (a[1] > b[1]) {
+			    return 1;
+			} else if (a[1] == b[1]) {
+			    return a[0] - b[0];
+			} else {
+			    return -1;
+			}
+		});
+		map = new HashMap<>();
+	}
+
+	public void update(int timestamp, int price) {
+		if (map.containsKey(timestamp)) {
+			int oldPrice = map.get(timestamp);
+			treeSet.remove(new int[]{timestamp, oldPrice});
+		}
+
+		if (timestamp >= maxTimestamp) {
+			maxTimestamp = timestamp;
+		}
+
+		map.put(timestamp, price);
+		treeSet.add(new int[]{timestamp, price});
+	}
+
+	public int current() {
+		return map.get(maxTimestamp);
+	}
+
+	public int maximum() {
+		return treeSet.last()[1];
+	}
+
+	public int minimum() {
+		return treeSet.first()[1];
+	}
 }
