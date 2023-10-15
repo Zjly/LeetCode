@@ -23,24 +23,45 @@ import java.util.Map;
  */
 
 public class Question137_SingleNumberII {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-	}
+    }
 }
 
 class Solution137 {
-	public int singleNumber(int[] nums) {
-		HashMap<Integer, Integer> hashMap = new HashMap<>();
-		for(int num : nums) {
-			hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
-		}
+    public int singleNumber(int[] nums) {
+        HashMap<Integer, Integer> hashMap = new HashMap<>();
+        for (int num : nums) {
+            hashMap.put(num, hashMap.getOrDefault(num, 0) + 1);
+        }
 
-		for(Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
-			if(entry.getValue() == 1) {
-			    return entry.getKey();
-			}
-		}
+        for (Map.Entry<Integer, Integer> entry : hashMap.entrySet()) {
+            if (entry.getValue() == 1) {
+                return entry.getKey();
+            }
+        }
 
-		return 0;
-	}
+        return 0;
+    }
+}
+
+/**
+ * @author Zhang Lei
+ * @date 2023/10/15 16:15
+ */
+class Solution137_2 {
+    public int singleNumber(int[] nums) {
+        int result = 0;
+
+        for (int i = 0; i < 32; i++) {
+            int sum = 0;
+            for (int num : nums) {
+                sum += (num >> i) & 1;
+            }
+            sum = sum % 3;
+            result = result | (sum << i);
+        }
+
+        return result;
+    }
 }
