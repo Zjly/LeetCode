@@ -51,3 +51,25 @@ class Solution260 {
 		return result;
 	}
 }
+
+class Solution260_2 {
+	public int[] singleNumber(int[] nums) {
+		int xorSum = 0;
+		for (int num : nums) {
+			xorSum = xorSum ^ num;
+		}
+
+		int sign = xorSum & -xorSum;
+		int num1 = 0;
+		int num2 = 0;
+		for (int num : nums) {
+			if ((num & sign) == 0) {
+			    num1 = num1 ^ num;
+			} else {
+			    num2 = num2 ^ num;
+			}
+		}
+
+		return new int[]{num1, num2};
+	}
+}
