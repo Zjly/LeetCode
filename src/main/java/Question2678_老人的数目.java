@@ -42,7 +42,7 @@ public class Question2678_老人的数目 {
  * @author Zhang Lei
  * @date 2023/10/23 13:12
  */
-class Solution2578 {
+class Solution2678 {
     public int countSeniors(String[] details) {
         int count = 0;
         for (String detail : details) {
