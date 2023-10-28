@@ -51,7 +51,7 @@ public class Question2525_根据规则将箱子分类 {
  * @author Zhang Lei
  * @date 2023/10/20 10:03
  */
-class Solution {
+class Solution2525 {
     public String categorizeBox(int length, int width, int height, int mass) {
         boolean bulky = false;
         boolean heavy = false;
