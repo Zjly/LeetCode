@@ -59,3 +59,28 @@ class Solution318 {
 		return maxProduct;
 	}
 }
+
+class Solution318_2 {
+	public int maxProduct(String[] words) {
+		int[] wordsBit = new int[words.length];
+		for (int i = 0; i < words.length; i++) {
+			String word = words[i];
+			int bit = 0;
+			for (int j = 0; j < word.length(); j++) {
+				bit = bit | (1 << (word.charAt(j) - 'a'));
+			}
+			wordsBit[i] = bit;
+		}
+
+		int maxProduct = 0;
+		for (int i = 0; i < wordsBit.length; i++) {
+			for (int j = i + 1; j < wordsBit.length; j++) {
+				if ((wordsBit[i] & wordsBit[j]) == 0) {
+					maxProduct = Math.max(words[i].length() * words[j].length(), maxProduct);
+				}
+			}
+		}
+
+		return maxProduct;
+	}
+}
