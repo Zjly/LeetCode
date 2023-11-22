@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * 2304. 网格中的最小路径代价
  * 提示
@@ -54,6 +56,30 @@ public class Question2304_网格中的最小路径代价 {
  */
 class Solution2304 {
     public int minPathCost(int[][] grid, int[][] moveCost) {
+        int row = grid.length;
+        int column = grid[0].length;
+        int[] dp = new int[column];
+        for (int i = 0; i < column; i++) {
+            dp[i] = grid[0][i];
+        }
 
+        for (int i = 0; i < row - 1; i++) {
+            int[] ndp = new int[column];
+            Arrays.fill(ndp, Integer.MAX_VALUE);
+            for (int j = 0; j < column; j++) {
+                for (int k = 0; k < column; k++) {
+                    ndp[k] = Math.min(ndp[k], dp[j] + grid[i + 1][k] + moveCost[grid[i][j]][k]);
+                }
+            }
+
+            dp = ndp;
+        }
+
+        int minValue = Integer.MAX_VALUE;
+        for (int i = 0; i < column; i++) {
+            minValue = Math.min(minValue, dp[i]);
+        }
+
+        return minValue;
     }
 }
