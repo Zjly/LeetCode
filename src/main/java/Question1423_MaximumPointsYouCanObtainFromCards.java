@@ -66,3 +66,29 @@ class Solution1423 {
 		return totalScore - minScore;
 	}
 }
+
+/**
+ * @author Zhang Lei
+ * @date 2023/12/3 0:17
+ */
+class Solution1423_2 {
+	public int maxScore(int[] cardPoints, int k) {
+		k = cardPoints.length - k;
+		int sum = 0;
+		int score = 0;
+		for (int i = 0; i < k; i++) {
+			sum += cardPoints[i];
+			score += cardPoints[i];
+		}
+
+		int minSum = sum;
+		for (int i = k; i < cardPoints.length; i++) {
+			sum += cardPoints[i];
+			sum -= cardPoints[i - k];
+			minSum = Math.min(minSum, sum);
+			score += cardPoints[i];
+		}
+
+		return score - minSum;
+	}
+}
