@@ -71,3 +71,32 @@ class Solution299 {
 		return countA + "A" + (countAll - countA) + "B";
 	}
 }
+
+/**
+ * @author Zhang Lei
+ * @date 2024/3/10 23:01
+ */
+class Solution299_2 {
+	public String getHint(String secret, String guess) {
+		int A = 0;
+		int B = 0;
+		int[] countsS = new int[10];
+		int[] countsG = new int[10];
+		for (int i = 0; i < secret.length(); i++) {
+			char s = secret.charAt(i);
+			char g = guess.charAt(i);
+			if (s == g) {
+				A++;
+			}
+			countsS[s - '0']++;
+			countsG[g - '0']++;
+		}
+
+		for (int i = 0; i < countsS.length; i++) {
+			B += Math.min(countsS[i], countsG[i]);
+		}
+
+		B -= A;
+		return A + "A" + B + "B";
+	}
+}
