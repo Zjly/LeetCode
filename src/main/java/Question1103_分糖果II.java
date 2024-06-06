@@ -68,7 +68,18 @@ class Solution1103 {
     public int[] distributeCandies(int candies, int num_people) {
         int[] result = new int[num_people];
 
+        int candy = 1;
+        int index = 0;
+        while (true) {
+            if (candies <= candy) {
+                result[index % num_people] += candies;
+                return result;
+            }
 
-        return result;
+            result[index % num_people] += candy;
+            candies -= candy;
+            index++;
+            candy++;
+        }
     }
 }
