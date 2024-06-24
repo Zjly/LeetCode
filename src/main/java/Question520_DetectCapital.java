@@ -64,3 +64,48 @@ class Solution520 {
 		return c >= 'a' && c <= 'z';
 	}
 }
+
+/**
+ * @author Zhang Lei
+ * @date 2024/6/24 10:29
+ */
+class Solution520_2 {
+	public boolean detectCapitalUse(String word) {
+		int status = -1;
+
+		if (capitalLetters(word.charAt(0))) {
+			// 首字母大写
+			status = 0;
+		} else {
+			// 全小写
+			status = 1;
+		}
+
+		for (int i = 1; i < word.length(); i++) {
+			char c = word.charAt(i);
+			if (status == 0) {
+				if(capitalLetters(c)) {
+					// 全大写
+					status = 2;
+				} else {
+					// 首字母大写
+					status = 3;
+				}
+			} else if (status == 1 && !capitalLetters(c)) {
+				continue;
+			} else if (status == 2 && capitalLetters(c)) {
+				continue;
+			} else if (status == 3 && !capitalLetters(c)) {
+				continue;
+			} else {
+				return false;
+			}
+		}
+
+		return true;
+	}
+
+	private boolean capitalLetters(char c) {
+		return c >= 'A' && c <= 'Z';
+	}
+}
