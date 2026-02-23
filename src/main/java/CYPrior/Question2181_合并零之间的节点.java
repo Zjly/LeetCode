@@ -46,6 +46,8 @@ package CYPrior; /**
  * 链表的 开端 和 末尾 节点都满足 Node.val == 0
  */
 
+import tools.ListNode;
+
 /**
  * @author ZhangLei
  * @version 2024/09/09 23:37

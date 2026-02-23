@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 /**
  * 979. 在二叉树中分配硬币
  * 给你一个有 n 个结点的二叉树的根结点 root ，其中树中每个结点 node 都对应有 node.val 枚硬币。整棵树上一共有 n 枚硬币。

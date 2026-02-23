@@ -1,6 +1,7 @@
 package CYPrior;
 
 import org.junit.jupiter.api.Test;
+import tools.ListNode;
 
 /**
  * 142. 环形链表 II

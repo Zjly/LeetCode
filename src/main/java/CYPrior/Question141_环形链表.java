@@ -44,6 +44,8 @@ package CYPrior; /**
  * 进阶：你能用 O(1)（即，常量）内存解决此问题吗？
  */
 
+import tools.ListNode;
+
 /**
  * @author Zhang Lei
  * @date 2023/7/30 0:07

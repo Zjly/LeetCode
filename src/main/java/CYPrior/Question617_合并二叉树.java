@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 /**
  * 617. 合并二叉树
  * 给你两棵二叉树： root1 和 root2 。

@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.ListNode;
+
 /**
  * 21. 合并两个有序链表
  * 简单

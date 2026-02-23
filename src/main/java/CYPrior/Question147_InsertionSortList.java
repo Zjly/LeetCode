@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.ListNode;
+
 /**
  * 147. 对链表进行插入排序
  * 对链表进行插入排序。

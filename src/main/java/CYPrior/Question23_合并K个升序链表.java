@@ -1,6 +1,8 @@
 package CYPrior;
 
 import org.junit.jupiter.api.Test;
+import tools.ListNode;
+import tools.Tool;
 
 /**
  * 23. 合并 K 个升序链表
@@ -47,11 +49,11 @@ public class Question23_合并K个升序链表 {
 
     @Test
     public void test() {
-        ListNode list1 = ListNodeTool.createListNode(new int[]{1, 4, 5});
-        ListNode list2 = ListNodeTool.createListNode(new int[]{1, 3, 4});
-        ListNode list3 = ListNodeTool.createListNode(new int[]{2, 6});
+        ListNode list1 = Tool.createListNode(new int[]{1, 4, 5});
+        ListNode list2 = Tool.createListNode(new int[]{1, 3, 4});
+        ListNode list3 = Tool.createListNode(new int[]{2, 6});
         ListNode[] lists = {list1, list2, list3};
-        ListNodeTool.displayListNode(solution23.mergeKLists(lists));
+        Tool.displayListNode(solution23.mergeKLists(lists));
     }
 }
 

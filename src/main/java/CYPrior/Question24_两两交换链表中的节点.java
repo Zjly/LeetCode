@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.ListNode;
+
 /**
  * 24. 两两交换链表中的节点
  * 中等

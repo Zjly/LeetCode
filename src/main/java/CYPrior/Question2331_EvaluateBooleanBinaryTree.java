@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 /**
  * 2331. 计算布尔二叉树的值
  * 给你一棵 完整二叉树 的根，这棵树有以下特征：

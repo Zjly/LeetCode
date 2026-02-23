@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 /**
  * 1379. 找出克隆二叉树中的相同节点
  * 简单

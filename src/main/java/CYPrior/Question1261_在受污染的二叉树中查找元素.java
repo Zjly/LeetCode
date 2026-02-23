@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 import java.util.HashSet;
 import java.util.Set;
 

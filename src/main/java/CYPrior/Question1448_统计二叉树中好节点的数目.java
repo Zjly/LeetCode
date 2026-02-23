@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 /**
  * 1448. 统计二叉树中好节点的数目
  * 给你一棵根为 root 的二叉树，请你返回二叉树中好节点的数目。

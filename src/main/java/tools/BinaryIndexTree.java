@@ -1,10 +1,10 @@
-package CY26;
+package tools;
 
 /**
  * 树状数组
  */
 public class BinaryIndexTree {
-	int[] binaryIndexTree;
+	public int[] binaryIndexTree;
 
 	/**
 	 * 根据给定数组初始化树状数组

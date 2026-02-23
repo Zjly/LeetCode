@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 /**
  * 563. 二叉树的坡度
  * 给定一个二叉树，计算 整个树 的坡度 。

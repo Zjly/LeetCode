@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.ListNode;
+
 /**
  * 725. 分隔链表
  * 给你一个头结点为 head 的单链表和一个整数 k ，请你设计一个算法将链表分隔为 k 个连续的部分。

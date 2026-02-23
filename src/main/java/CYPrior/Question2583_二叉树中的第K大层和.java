@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.TreeNode;
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collections;

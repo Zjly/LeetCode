@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.ListNode;
+
 /**
  * 143. 重排链表
  * 中等

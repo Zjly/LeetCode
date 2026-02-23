@@ -1,5 +1,7 @@
 package CYPrior;
 
+import tools.Node;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 

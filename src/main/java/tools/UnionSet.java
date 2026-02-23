@@ -1,4 +1,4 @@
-package CY26;
+package tools;
 
 public class UnionSet {
 	private final int[] unionSet;
