@@ -59,14 +59,7 @@ import java.util.List;
  */
 
 public class Question2859_计算K置位下标对应元素的和 {
-    Solution2859 solution2859 = new Solution2859();
 
-    @Test
-    public void test() {
-        List<Integer> nums = List.of(5, 10, 1, 5, 2);
-        int k = 1;
-        System.out.println(solution2859.sumIndicesWithKSetBits(nums, k));
-    }
 }
 
 /**
